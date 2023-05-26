@@ -9,7 +9,7 @@ export const Navbar = () => {
   return (
     <div className="w-full h-[80px] bg-white border-b">
       <div className="md:max-w-[85%] max-w-[600px] m-auto w-full h-full flex justify-between items-center md:px-0 px-4">
-        <Image src="/logo.svg" alt="Logo" width={200} height={25} />
+        <Image src="/logo.svg" alt="Logo" width={150} height={25} />
 
         <div className="hidden md:flex items-center ">
           <ul className="flex gap-4">

@@ -13,19 +13,31 @@ import {
   Select,
   Spinner,
 } from "@chakra-ui/react";
+import { useSignUpMutation } from "../../redux/api/apiSlice";
+import { errorToast, successToast } from "../../hooks/use-toast";
 
 const Register = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+
+  const [signUp, { isLoading }] = useSignUpMutation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
 
-  //   const onSubmit = async (e) => {
-  //     e.preventDefault();
-  //   };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const data = await signUp({ name, email, phone, password });
+      console.log(data);
+      successToast("Success");
+    } catch (error) {
+      errorToast("Error: " + error.message);
+    }
+  };
 
   return (
     <div className="w-[90%] md:w-2/5 mx-auto mt-16">
@@ -97,9 +109,9 @@ const Register = () => {
 
         <button
           className="px-8 py-3 rounded-md bg-[#3359DF] text-white font-bold w-full"
-          //   onClick={onSubmit}
+          onClick={onSubmit}
         >
-          <Link href="/dashboard">Register</Link>
+          Register
         </button>
       </div>
     </div>
